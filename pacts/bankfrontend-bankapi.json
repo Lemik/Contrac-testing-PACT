@@ -1,0 +1,74 @@
+{
+  "consumer": {
+    "name": "BankFrontend"
+  },
+  "provider": {
+    "name": "BankAPI"
+  },
+  "interactions": [
+    {
+      "description": "a request for account balance",
+      "providerState": "Account 123456 exists",
+      "request": {
+        "method": "GET",
+        "path": "/balance/123456"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": {
+          "account_id": "123456",
+          "balance": 1000
+        }
+      }
+    },
+    {
+      "description": "a request to deposit money",
+      "providerState": "Account 123456 exists",
+      "request": {
+        "method": "POST",
+        "path": "/deposit",
+        "body": {
+          "account_id": "123456",
+          "amount": 500
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": {
+          "message": "Deposit successful",
+          "new_balance": 1500
+        }
+      }
+    },
+    {
+      "description": "a request to withdraw money",
+      "providerState": "Account 123456 exists with sufficient balance",
+      "request": {
+        "method": "POST",
+        "path": "/withdraw",
+        "body": {
+          "account_id": "123456",
+          "amount": 200
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": {
+          "message": "Withdrawal successful",
+          "new_balance": 1300
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
